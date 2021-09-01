@@ -5,9 +5,16 @@ import lista.NodoDobleAVL;
 
 public class Controller {
     public static void main(String[] args) {
-        String s = "2,4,6,3,5,8,1,7";
+        //String s = "2,4,6,3,5,8,1,7";
+        String s = "G,F,H,B,A,D,J,I,K,C,E";
+        String t = "A,B,F,G,H,C,D,I,J,K,E";
+
         ArbolBinario a = new ArbolBinario();
-        a.construirArbolString(s);
+
+        a.construirArbolInordenYPreorden(s,t);
+        //a.construirArbolString(s);
+
+
 
         //control hojas
         /*String e = a.ImprimirHojasPorNodo(a.buscarNodo(2));

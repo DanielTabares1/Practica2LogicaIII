@@ -6,9 +6,7 @@ package arboles;
 
 import lista.NodoDobleAVL;
 
-import java.util.Random;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * @author camilo
@@ -216,6 +214,50 @@ public class ArbolBinario {
     }
 
     //TODO--------- Método para generar árbol con recorridos
+
+    public void construirArbolInordenYPreorden(String inorden,String preorden){
+
+        String[] in = inorden.split(",");
+        String[] pre = preorden.split(",");
+
+        int n = indice(in,pre[0]);
+
+        //se obtienen strings correspondientes a los hijos
+        String hiInorden = inorden.substring(0,inorden.indexOf(pre[0])-1);
+        System.out.println(hiInorden);
+
+        String hdInorden = inorden.substring(inorden.indexOf(in[n+1]));
+        System.out.println(hdInorden);
+
+        String hiPreorden = preorden.substring(preorden.indexOf(pre[1]),preorden.indexOf(pre[n+1])-1);
+        System.out.println(hiPreorden);
+
+        String hdPreorden = preorden.substring(preorden.indexOf(hiPreorden)+hiPreorden.length()+1);
+        System.out.println(hdPreorden);
+
+    }
+
+    public int indice(String[] x, String y){
+        for (int i = 0; i < x.length ; i++) {
+            if(x[i].equals(y)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void construirArbolInordenYPosorden(String s,String j){
+
+    }
+
+    private double[] construirArregloConString(String s){
+        String[] v = s.split(",");
+        double[] d = new double[v.length];
+        for (int i = 0; i < v.length ; i++) {
+            d[i] = Double.parseDouble(v[i]);
+        }
+        return d;
+    }
 
     public NodoDobleAVL buscarNodo(double d) {
         NodoDobleAVL p = raiz;
