@@ -213,50 +213,116 @@ public class ArbolBinario {
         }
     }
 
-    //TODO--------- Método para generar árbol con recorridos
-
-    public void construirArbolInordenYPreorden(String inorden,String preorden){
-
-        String[] in = inorden.split(",");
-        String[] pre = preorden.split(",");
-
-        int n = indice(in,pre[0]);
-
-        //se obtienen strings correspondientes a los hijos
-        String hiInorden = inorden.substring(0,inorden.indexOf(pre[0])-1);
-        System.out.println(hiInorden);
-
-        String hdInorden = inorden.substring(inorden.indexOf(in[n+1]));
-        System.out.println(hdInorden);
-
-        String hiPreorden = preorden.substring(preorden.indexOf(pre[1]),preorden.indexOf(pre[n+1])-1);
-        System.out.println(hiPreorden);
-
-        String hdPreorden = preorden.substring(preorden.indexOf(hiPreorden)+hiPreorden.length()+1);
-        System.out.println(hdPreorden);
-
+    public NodoDobleAVL construirArbolPreInRecursion(String[] inorden, String[] preorden) {
+        NodoDobleAVL x = new NodoDobleAVL(preorden[0]);
+        if (inorden.length == 1) {
+            return x;
+        }
+        int n, l1, l2;
+        n = indice(inorden, preorden[0]);
+        l1 = n;
+        l2 = inorden.length - n - 1;
+        String[] aii, aip, adi, adp;
+        if (l1 != 0) {
+            aii = subVector(inorden, 0, l1);
+            aip = subVector(preorden, 1, l1);
+            x.asignaLI(construirArbolPreInRecursion(aii, aip));
+        }
+        if (l2 != 0) {
+            adi = subVector(inorden, n + 1, l2);
+            adp = subVector(preorden, n + 1, l2);
+            x.asignaLD(construirArbolPreInRecursion(adi, adp));
+        }
+        return x;
     }
 
-    public int indice(String[] x, String y){
-        for (int i = 0; i < x.length ; i++) {
-            if(x[i].equals(y)){
+    public void construirArbolInordenYPreorden(String inorden, String preorden) {
+        String[] in = removerComas(inorden);
+        String[] pre = removerComas(preorden);
+        NodoDobleAVL r = new NodoDobleAVL(pre[0]);
+        raiz = r;
+        int n, l1, l2;
+        n = indice(in, pre[0]);
+        l1 = n;
+        l2 = in.length - n - 1;
+        String[] aii, aip, adi, adp;
+        if (l1 != 0) {
+            aii = subVector(in, 0, l1);
+            aip = subVector(pre, 1, l1);
+            r.asignaLI(construirArbolPreInRecursion(aii, aip));
+        }
+        if (l2 != 0) {
+            adi = subVector(in, n + 1, l2);
+            adp = subVector(pre, n + 1, l2);
+            r.asignaLD(construirArbolPreInRecursion(adi, adp));
+        }
+    }
+
+    public NodoDobleAVL construirArbolPosInRecursion(String[] inorden, String[] posorden) {
+        NodoDobleAVL x = new NodoDobleAVL(posorden[posorden.length - 1]);
+        if (inorden.length == 1) {
+            return x;
+        }
+        int n, l1, l2;
+        n = indice(inorden, posorden[posorden.length - 1]);
+        l1 = n;
+        l2 = inorden.length - n - 1;
+        String[] aii, aip, adi, adp;
+        if (l1 != 0) {
+            aii = subVector(inorden, 0, l1);
+            aip = subVector(posorden, 0, l1);
+            x.asignaLI(construirArbolPosInRecursion(aii, aip));
+        }
+        if (l2 != 0) {
+            adi = subVector(inorden, n + 1, l2);
+            adp = subVector(posorden, n, l2);
+            x.asignaLD(construirArbolPosInRecursion(adi, adp));
+        }
+        return x;
+    }
+
+    public void construirArbolInordenYPosorden(String inorden, String posorden) {
+        String[] in = removerComas(inorden);
+        String[] pos = removerComas(posorden);
+        NodoDobleAVL r = new NodoDobleAVL(pos[pos.length - 1]);
+        raiz = r;
+        int n, l1, l2;
+        n = indice(in, pos[pos.length - 1]);
+        l1 = n;
+        l2 = in.length - n - 1;
+        String[] aii, aip, adi, adp;
+        if (l1 != 0) {
+            aii = subVector(in, 0, l1);
+            aip = subVector(pos, 0, l1);
+            r.asignaLI(construirArbolPosInRecursion(aii, aip));
+        }
+        if (l2 != 0) {
+            adi = subVector(in, n + 1, l2);
+            adp = subVector(pos, n, l2);
+            r.asignaLD(construirArbolPosInRecursion(adi, adp));
+        }
+    }
+
+    public String[] subVector(String[] x, int n, int m) {
+        String[] s = new String[m];
+        for (int i = 0; i < m; i++) {
+            s[i] = x[n + i];
+        }
+        return s;
+    }
+
+    public String[] removerComas(String x) {
+        String[] y = x.split(",");
+        return y;
+    }
+
+    public int indice(String[] x, String y) {
+        for (int i = 0; i < x.length; i++) {
+            if (x[i].equals(y)) {
                 return i;
             }
         }
         return -1;
-    }
-
-    public void construirArbolInordenYPosorden(String s,String j){
-
-    }
-
-    private double[] construirArregloConString(String s){
-        String[] v = s.split(",");
-        double[] d = new double[v.length];
-        for (int i = 0; i < v.length ; i++) {
-            d[i] = Double.parseDouble(v[i]);
-        }
-        return d;
     }
 
     public NodoDobleAVL buscarNodo(double d) {
