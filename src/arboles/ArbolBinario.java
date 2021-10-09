@@ -120,6 +120,53 @@ public class ArbolBinario {
         System.out.println(x.retornaDato());
     }
 
+    public String mostrarS(int opcion) {
+        String s = "";
+        if (opcion == INORDEN) {
+            s += mostrarInordenS(raiz);
+        }
+        if (opcion == PREORDEN) {
+            s += mostrarPreordenS(raiz);
+        }
+        if (opcion == POSORDEN) {
+
+            s += mostrarPosordenS(raiz);
+        }
+        return s;
+    }
+
+    private String mostrarInordenS(NodoDobleAVL x) {
+        String s = "";
+        if (x != null) {
+            s += mostrarInordenS(x.retornaLI());
+            s += (x.retornaDato())+" ";
+            s += mostrarInordenS(x.retornaLD());
+        }
+        return s;
+    }
+
+    private String mostrarPreordenS(NodoDobleAVL x) {
+        String s = "";
+        if (x == null) {
+            return "";
+        }
+        s += (x.retornaDato())+" ";
+        s += mostrarPreordenS(x.retornaLI());
+        s += mostrarPreordenS(x.retornaLD());
+        return s;
+    }
+
+    private String mostrarPosordenS(NodoDobleAVL x) {
+        String s = "";
+        if (x == null) {
+            return "";
+        }
+        s += mostrarPosordenS(x.retornaLI());
+        s += mostrarPosordenS(x.retornaLD());
+        s += (x.retornaDato())+" ";
+        return s;
+    }
+
     public int hojas() {
         if (esVacio()) {
             return 0;
@@ -144,11 +191,11 @@ public class ArbolBinario {
             return "";
         }
         if (x.retornaLI() == null && x.retornaLD() == null) {
-            return (","+(x.retornaDato()));
+            return ("," + (x.retornaDato()));
         }
         String izquierda = ImprimirHojasPorNodo(x.retornaLI());
         String derecha = ImprimirHojasPorNodo(x.retornaLD());
-        return (","+izquierda +","+ derecha);
+        return ("," + izquierda + "," + derecha);
     }
 
     public int grado() {
@@ -366,7 +413,8 @@ public class ArbolBinario {
         NodoDobleAVL x = buscarNodo(d);
         NodoDobleAVL p = padre((double) x.retornaDato());
 
-        if (p.retornaLD() == x) return p.retornaLI();
+        if (p == null) return null;
+        if (p.retornaLD() != null && p.retornaLD() == x) return p.retornaLI();
         else return p.retornaLD();
     }
 
@@ -375,7 +423,7 @@ public class ArbolBinario {
         if (x == raiz || x == raiz.retornaLI() || x == raiz.retornaLD()) {
             return null;
         }
-        return padre((double) padre((double) x.retornaDato()).retornaDato());
+        return (padre((double) padre((double) x.retornaDato()).retornaDato()));
     }
 
     public String ancestros(double d) {

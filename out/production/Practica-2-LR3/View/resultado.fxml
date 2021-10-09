@@ -15,26 +15,26 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Altura_Label" text="Altura:">
+                  <Label fx:id="altura_label" text="Altura:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Grado_Label" text="Grado:">
+                  <Label fx:id="grado_label" text="Grado:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Hojas_Label" text="Hojas:">
+                  <Label fx:id="hojas_label" text="Hojas:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="Inorden_Label" text="Recorrido Inorden:" />
-            <Label fx:id="Preorden_Label" text="Recorrido Preorden:" />
-            <Label fx:id="Posorden_Label" text="Recorrido Posorden:" />
+            <Label fx:id="inorden_label" text="Recorrido Inorden:" />
+            <Label fx:id="preorden_label" text="Recorrido Preorden:" />
+            <Label fx:id="posorden_label" text="Recorrido Posorden:" />
             <Label text="Información Por Nodos: ">
                <font>
                   <Font size="15.0" />
@@ -42,17 +42,18 @@
             </Label>
             <TableView fx:id="tabla_id" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="47.0" text="#" />
-                <TableColumn prefWidth="88.0" text="Nodo" />
-                  <TableColumn prefWidth="90.0" text="#Hijos" />
-                  <TableColumn prefWidth="75.0" text="Hermano" />
-                  <TableColumn prefWidth="75.0" text="Izq - Der" />
-                  <TableColumn prefWidth="75.0" text="Padre" />
-                  <TableColumn prefWidth="75.0" text="Ancestros" />
-                  <TableColumn prefWidth="75.0" text="Tío" />
-                  <TableColumn prefWidth="75.0" text="Abuelo" />
+                <TableColumn fx:id="indice_columna" prefWidth="47.0" text="#" />
+                <TableColumn fx:id="nodo_columna" prefWidth="88.0" text="Nodo" />
+                  <TableColumn fx:id="hijos_columna" prefWidth="90.0" text="#Hijos" />
+                  <TableColumn fx:id="hermano_columna" prefWidth="75.0" text="Hermano" />
+                  <TableColumn fx:id="lado_columna" prefWidth="75.0" text="Izq - Der" />
+                  <TableColumn fx:id="padre_columna" prefWidth="75.0" text="Padre" />
+                  <TableColumn fx:id="ancestros_columna" prefWidth="75.0" text="Ancestros" />
+                  <TableColumn fx:id="tio_columna" prefWidth="75.0" text="Tío" />
+                  <TableColumn fx:id="abuelo_columna" prefWidth="75.0" text="Abuelo" />
               </columns>
             </TableView>
+            <Button fx:id="cargar_Button" mnemonicParsing="false" onAction="#cargar_action" text="Cargar Arbol" />
             <Button fx:id="Cerrar_Button" mnemonicParsing="false" onAction="#cerrar_action" text="Cerrar" />
          </children>
       </VBox>

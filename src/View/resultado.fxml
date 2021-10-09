@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="rootPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ResultadoController">
    <children>
-      <VBox layoutX="119.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="119.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <HBox prefHeight="32.0" prefWidth="700.0" spacing="20.0">
                <children>
@@ -15,45 +16,53 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Altura_Label" text="Altura:">
+                  <Label fx:id="altura_label" text="Altura: ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Grado_Label" text="Grado:">
+                  <Label fx:id="grado_label" text="Grado: ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Hojas_Label" text="Hojas:">
+                  <Label fx:id="hojas_label" text="Hojas: ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="Inorden_Label" text="Recorrido Inorden:" />
-            <Label fx:id="Preorden_Label" text="Recorrido Preorden:" />
-            <Label fx:id="Posorden_Label" text="Recorrido Posorden:" />
+            <Label fx:id="inorden_label" text="Recorrido Inorden: " />
+            <Label fx:id="preorden_label" text="Recorrido Preorden: " />
+            <Label fx:id="Posorden_Label" text="Recorrido Posorden: " />
             <Label text="Información Por Nodos: ">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="tabla_id" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tabla_id" prefHeight="200.0" prefWidth="655.0">
               <columns>
-                <TableColumn prefWidth="47.0" text="#" />
-                <TableColumn prefWidth="88.0" text="Nodo" />
-                  <TableColumn prefWidth="90.0" text="#Hijos" />
-                  <TableColumn prefWidth="75.0" text="Hermano" />
-                  <TableColumn prefWidth="75.0" text="Izq - Der" />
-                  <TableColumn prefWidth="75.0" text="Padre" />
-                  <TableColumn prefWidth="75.0" text="Ancestros" />
-                  <TableColumn prefWidth="75.0" text="Tío" />
-                  <TableColumn prefWidth="75.0" text="Abuelo" />
+                <TableColumn fx:id="indice_columna" prefWidth="41.0" text="#" />
+                <TableColumn fx:id="nodo_columna" prefWidth="79.0" text="Nodo" />
+                  <TableColumn fx:id="hijos_columna" prefWidth="65.0" text="#Hijos" />
+                  <TableColumn fx:id="hermano_columna" prefWidth="70.0" text="Hermano" />
+                  <TableColumn fx:id="lado_columna" prefWidth="82.0" text="Izq - Der" />
+                  <TableColumn fx:id="padre_columna" prefWidth="71.0" text="Padre" />
+                  <TableColumn fx:id="ancestros_columna" prefWidth="106.0" text="Ancestros" />
+                  <TableColumn fx:id="tio_columna" minWidth="0.0" prefWidth="74.0" text="Tío" />
+                  <TableColumn fx:id="abuelo_columna" prefWidth="91.0" text="Abuelo" />
               </columns>
             </TableView>
-            <Button fx:id="Cerrar_Button" mnemonicParsing="false" onAction="#cerrar_action" text="Cerrar" />
+            <HBox prefHeight="34.0" prefWidth="700.0" spacing="220.0">
+               <children>
+                  <Button fx:id="cargar_Button" mnemonicParsing="false" onAction="#cargar_action" prefHeight="35.0" prefWidth="200.0" text="Cargar Arbol" />
+                  <Button fx:id="Cerrar_Button" mnemonicParsing="false" onAction="#cerrar_action" prefHeight="75.0" prefWidth="200.0" text="Cerrar" />
+               </children>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
    </children>

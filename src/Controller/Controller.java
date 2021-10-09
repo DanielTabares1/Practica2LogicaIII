@@ -69,6 +69,7 @@ public class Controller {
     public void LanzarArbol() throws IOException {
         AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../View/resultado.fxml")));
         rootPane.getChildren().setAll(pane);
+        ResultadoController.setA(a);
     }
 
     public void nodos_action(){
