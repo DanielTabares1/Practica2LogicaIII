@@ -255,13 +255,13 @@ public class ArbolBinario {
     public void construirArbolTamaño(int n) {
         Random r = new Random();
         for (int i = 0; i < n; i++) {
-            double d = r.nextDouble();
+            double d = r.nextInt(100);
             agregar(d);
         }
     }
 
     public NodoDobleAVL construirArbolPreInRecursion(String[] inorden, String[] preorden) {
-        NodoDobleAVL x = new NodoDobleAVL(preorden[0]);
+        NodoDobleAVL x = new NodoDobleAVL(Double.valueOf(preorden[0]));
         if (inorden.length == 1) {
             return x;
         }
@@ -286,7 +286,7 @@ public class ArbolBinario {
     public void construirArbolInordenYPreorden(String inorden, String preorden) {
         String[] in = removerComas(inorden);
         String[] pre = removerComas(preorden);
-        NodoDobleAVL r = new NodoDobleAVL(pre[0]);
+        NodoDobleAVL r = new NodoDobleAVL(Double.valueOf(pre[0]));
         raiz = r;
         int n, l1, l2;
         n = indice(in, pre[0]);
@@ -306,7 +306,7 @@ public class ArbolBinario {
     }
 
     public NodoDobleAVL construirArbolPosInRecursion(String[] inorden, String[] posorden) {
-        NodoDobleAVL x = new NodoDobleAVL(posorden[posorden.length - 1]);
+        NodoDobleAVL x = new NodoDobleAVL(Double.valueOf(posorden[posorden.length - 1]));
         if (inorden.length == 1) {
             return x;
         }
@@ -331,7 +331,7 @@ public class ArbolBinario {
     public void construirArbolInordenYPosorden(String inorden, String posorden) {
         String[] in = removerComas(inorden);
         String[] pos = removerComas(posorden);
-        NodoDobleAVL r = new NodoDobleAVL(pos[pos.length - 1]);
+        NodoDobleAVL r = new NodoDobleAVL(Double.valueOf(pos[pos.length - 1]));
         raiz = r;
         int n, l1, l2;
         n = indice(in, pos[pos.length - 1]);

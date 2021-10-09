@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="rootPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ResultadoController">
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ResultadoController">
    <children>
-      <VBox layoutX="119.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox layoutX="119.0" layoutY="14.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox prefHeight="32.0" prefWidth="700.0" spacing="20.0">
+            <HBox prefHeight="18.0" spacing="60.0">
                <children>
                   <Label text="Información del árbol:">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="altura_label" text="Altura: ">
@@ -35,33 +35,42 @@
             </HBox>
             <Label fx:id="inorden_label" text="Recorrido Inorden: " />
             <Label fx:id="preorden_label" text="Recorrido Preorden: " />
-            <Label fx:id="Posorden_Label" text="Recorrido Posorden: " />
+            <Label fx:id="posorden_label" text="Recorrido Posorden: " />
             <Label text="Información Por Nodos: ">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="tabla_id" prefHeight="200.0" prefWidth="655.0">
+            <TableView fx:id="tabla_id" prefHeight="363.0" prefWidth="780.0" style="-fx-background-color: #c6c6c6;">
               <columns>
-                <TableColumn fx:id="indice_columna" prefWidth="41.0" text="#" />
-                <TableColumn fx:id="nodo_columna" prefWidth="79.0" text="Nodo" />
-                  <TableColumn fx:id="hijos_columna" prefWidth="65.0" text="#Hijos" />
-                  <TableColumn fx:id="hermano_columna" prefWidth="70.0" text="Hermano" />
-                  <TableColumn fx:id="lado_columna" prefWidth="82.0" text="Izq - Der" />
-                  <TableColumn fx:id="padre_columna" prefWidth="71.0" text="Padre" />
-                  <TableColumn fx:id="ancestros_columna" prefWidth="106.0" text="Ancestros" />
-                  <TableColumn fx:id="tio_columna" minWidth="0.0" prefWidth="74.0" text="Tío" />
-                  <TableColumn fx:id="abuelo_columna" prefWidth="91.0" text="Abuelo" />
+                <TableColumn fx:id="indice_columna" maxWidth="50.0" minWidth="40.0" prefWidth="40.0" text="#" />
+                <TableColumn fx:id="nodo_columna" prefWidth="141.0" text="Nodo" />
+                  <TableColumn fx:id="hijos_columna" text="#Hijos" />
+                  <TableColumn fx:id="hermano_columna" prefWidth="49.0" text="Hermano" />
+                  <TableColumn fx:id="lado_columna" prefWidth="126.0" text="Izq - Der" />
+                  <TableColumn fx:id="padre_columna" prefWidth="133.0" text="Padre" />
+                  <TableColumn fx:id="ancestros_columna" minWidth="140.0" prefWidth="126.0" text="Ancestros" />
+                  <TableColumn fx:id="tio_columna" minWidth="0.0" text="Tío" />
+                  <TableColumn fx:id="abuelo_columna" text="Abuelo" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
             </TableView>
-            <HBox prefHeight="34.0" prefWidth="700.0" spacing="220.0">
+            <HBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="700.0" spacing="220.0">
                <children>
-                  <Button fx:id="cargar_Button" mnemonicParsing="false" onAction="#cargar_action" prefHeight="35.0" prefWidth="200.0" text="Cargar Arbol" />
-                  <Button fx:id="Cerrar_Button" mnemonicParsing="false" onAction="#cerrar_action" prefHeight="75.0" prefWidth="200.0" text="Cerrar" />
+                  <Button fx:id="cargar_Button" mnemonicParsing="false" onAction="#cargar_action" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: rgba(105,214,241,0.64);" text="Cargar Arbol">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Button>
+                  <Button fx:id="Cerrar_Button" mnemonicParsing="false" onAction="#cerrar_action" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: rgba(255,92,92,0.4);" text="Cerrar">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Button>
                </children>
-               <padding>
-                  <Insets left="35.0" />
-               </padding>
             </HBox>
          </children>
       </VBox>
