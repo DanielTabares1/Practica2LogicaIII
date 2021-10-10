@@ -5,21 +5,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import lista.NodoDobleAVL;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class ResultadoController {
+
 
     @FXML
     private AnchorPane rootPane;
@@ -155,5 +157,18 @@ public class ResultadoController {
         else s = padre.retornaDato().toString();
         return s;
     }
+
+    public void graficar_action() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/grafico.fxml"));
+        Parent root = loader.load();
+        Grafico g = loader.getController();
+        g.a = Arbol;
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
 
 }

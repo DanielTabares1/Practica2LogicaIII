@@ -63,7 +63,6 @@ public class Controller {
             default: break;
         }
         LanzarArbol();
-        
     }
 
     public void LanzarArbol() throws IOException {
