@@ -8,12 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import lista.NodoDobleAVL;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class Controller {
+    //parámetros y conección con la vista
     private ArbolBinario a = new ArbolBinario();
     private int opcion;
 
@@ -42,9 +42,10 @@ public class Controller {
     @FXML
     public Label label3id;
 
-
+    //método invocado cuando se presiona el botón para crear el árbol
     public void crear_action() throws IOException {
-        String s = text_Box_1.getText();
+        String s = text_Box_1.getText();    //se toma el dato ingresado por el usuario
+        //casos de opción ingresada para la forma de crear el árbol
         switch (opcion){
             case 0:
                 a.construirArbolString(s);
@@ -62,15 +63,18 @@ public class Controller {
                 }
             default: break;
         }
-        LanzarArbol();
+        LanzarArbol();  //se llama el método que muestra los resultados
     }
 
+    //método que carga los datos necesarios para mostrar la información del árbol creado
+    //y lo muestra en pantalla
     public void LanzarArbol() throws IOException {
         AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../View/resultado.fxml")));
         rootPane.getChildren().setAll(pane);
         ResultadoController.setA(a);
     }
 
+    //métodos que configuran los espacios para ingreso de datos del usuario al momento de crear el árbol
     public void nodos_action(){
         opcion = 0;
        forma1();
@@ -87,6 +91,7 @@ public class Controller {
         label1id.setText("Ingresar recorrido Inorden (cada nodo separado por una coma)");
     }
 
+    //métodos que adaptan la apariencia de la interfaz de usuario según la opción que este elija
     public void forma1(){
         label1id.setDisable(false);
         text_Box_1.setDisable(false);
@@ -107,71 +112,4 @@ public class Controller {
         label3id.setDisable(false);
         crear_Button.setDisable(false);
     }
-
-    public static void main(String[] args) {
-        //String s = "2,4,6,3,5,8,1,7";
-        String s = "G,F,H,B,A,D,J,I,K,C,E";
-        String t = "A,B,F,G,H,C,D,I,J,K,E";
-
-        ArbolBinario a = new ArbolBinario();
-
-        a.construirArbolInordenYPreorden(s,t);
-        //a.construirArbolString(s);
-
-
-
-        //control hojas
-        /*String e = a.ImprimirHojasPorNodo(a.buscarNodo(2));
-        while (e.contains(",,")) {
-            e = e.replace(",,", ",");
-        }
-        if(e.charAt(0)==',') e=e.substring(1);
-        if(e.charAt(e.length()-1)==',') e=e.substring(0,e.length()-1);
-        System.out.println(e);*/
-
-        //control de lado
-        /*double d = 2;
-        System.out.println(a.esIzqODer(d));*/
-
-
-        //control de tío
-        /*double d = 2;
-        NodoDobleAVL t = a.tio(d);
-        if(t==null) System.out.println("no tiene tío");
-        else System.out.println(t.retornaDato());*/
-
-
-        //ancestros
-        /*double d = 1;
-        System.out.println(a.ancestros(d));*/
-
-        //control de abuelo
-        /*double d = 1;
-        NodoDobleAVL b = a.abuelo(d);
-        if(b==null) System.out.println("no tiene abuelo");
-        else System.out.println(b.retornaDato());*/
-
-
-        //control de hermano
-        /*double d = 7;
-        NodoDobleAVL h = a.hermano(d);
-        if(h==null) System.out.println("No tiene hermano");
-        else System.out.println(h.retornaDato());*/
-
-
-        //System.out.println(a.numeroDeHijos(7));
-
-
-        //control de padre
-        /*double d = 1;
-
-        if(a.padre(d)==null){
-            System.out.println("no tiene padre");
-        }
-        else{
-            System.out.println(a.padre(d).retornaDato());
-        }*/
-
-    }
-
 }

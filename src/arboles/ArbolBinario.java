@@ -1,18 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package arboles;
 
 import lista.NodoDobleAVL;
 
 import java.util.*;
 
-/**
- * @author camilo
- */
 public class ArbolBinario {
 
+    //atributos
     private NodoDobleAVL raiz;
     public static final int INORDEN = 0;
     public static final int PREORDEN = 1;
@@ -22,9 +16,12 @@ public class ArbolBinario {
         return raiz;
     }
 
+    //constructor
     public ArbolBinario() {
         raiz = null;
     }
+
+    //métodos de la clase
 
     public boolean esVacio() {
         return (raiz == null);
@@ -74,6 +71,9 @@ public class ArbolBinario {
 
     }
 
+    /*
+    *este método muestra en consola los recorridos del árbol
+    */
     public void mostrar(int opcion) {
         System.out.println();
         if (opcion == INORDEN) {
@@ -90,6 +90,9 @@ public class ArbolBinario {
         }
     }
 
+    /*
+    estos métodos muestran independientemente por consola los recorridos
+     */
     private void mostrarInorden(NodoDobleAVL x) {
         if (x != null) {
             mostrarInorden(x.retornaLI());
@@ -116,6 +119,9 @@ public class ArbolBinario {
         System.out.println(x.retornaDato());
     }
 
+    /*
+    este método retorna en un string el recorrido solicitado
+     */
     public String mostrarS(int opcion) {
         String s = "";
         if (opcion == INORDEN) {
@@ -131,6 +137,9 @@ public class ArbolBinario {
         return s;
     }
 
+    /*
+    estos metodos retornan en un String el recorrido independiente buscado
+     */
     private String mostrarInordenS(NodoDobleAVL x) {
         String s = "";
         if (x != null) {
@@ -140,7 +149,6 @@ public class ArbolBinario {
         }
         return s;
     }
-
     private String mostrarPreordenS(NodoDobleAVL x) {
         String s = "";
         if (x == null) {
@@ -151,7 +159,6 @@ public class ArbolBinario {
         s += mostrarPreordenS(x.retornaLD());
         return s;
     }
-
     private String mostrarPosordenS(NodoDobleAVL x) {
         String s = "";
         if (x == null) {
@@ -163,6 +170,9 @@ public class ArbolBinario {
         return s;
     }
 
+    /*
+    método que retorna el número de hojas del arbol
+     */
     public int hojas() {
         if (esVacio()) {
             return 0;
@@ -170,6 +180,9 @@ public class ArbolBinario {
         return (hojasPorNodo(raiz));
     }
 
+    /*
+    método recursivo que busca las hojas desplazandose en cada nodo y retorna la cantidad de hojas
+     */
     public int hojasPorNodo(NodoDobleAVL x) {
         if (x == null) {
             return 0;
@@ -182,6 +195,9 @@ public class ArbolBinario {
         return (izquierda + derecha);
     }
 
+    /*
+    método que muestra en consola las hojas encontradas
+     */
     public String ImprimirHojasPorNodo(NodoDobleAVL x) {
         if (x == null) {
             return "";
@@ -194,6 +210,9 @@ public class ArbolBinario {
         return ("," + izquierda + "," + derecha);
     }
 
+    /*
+    método que retorna el grado general de un arbol
+     */
     public int grado() {
         if (esVacio()) {
             return 0;
@@ -201,6 +220,9 @@ public class ArbolBinario {
         return (gradoConRaiz(raiz));
     }
 
+    /*
+    método recursivo que busca el grado de un arbol ingresando algun nodo como raíz
+     */
     public int gradoConRaiz(NodoDobleAVL x) {
         if (x == null) {
             return 0;
@@ -221,10 +243,16 @@ public class ArbolBinario {
         return gmax;
     }
 
+    /*
+    método que retorna la altura de un arbol
+     */
     public int altura() {
         return alturaPorNodo(raiz);
     }
 
+    /*
+    método recursivo que retorna la altura de un arbol ingresando un nodo como raíz
+     */
     public int alturaPorNodo(NodoDobleAVL x) {
         if (x == null) {
             return 0;
@@ -237,6 +265,9 @@ public class ArbolBinario {
         return (derecha + 1);
     }
 
+    /*
+    método que construye un arbol cuando se ingresan los valores que sus nodos van a tener
+     */
     public void construirArbolString(String s) {
         String[] v = s.split(",");
         Double[] x = new Double[v.length];
@@ -248,6 +279,9 @@ public class ArbolBinario {
         }
     }
 
+    /*
+    método que construye un árbol solo entregando la cantidad de nodos a agregar
+     */
     public void construirArbolTamaño(int n) {
         Random r = new Random();
         for (int i = 0; i < n; i++) {
@@ -256,6 +290,11 @@ public class ArbolBinario {
         }
     }
 
+
+    //métodos para construir un árbol entregando un par de recorridos, siempre el inorden acompañado por otro
+    /*
+    método recursivo para construir con inorden y preorden
+     */
     public NodoDobleAVL construirArbolPreInRecursion(String[] inorden, String[] preorden) {
         NodoDobleAVL x = new NodoDobleAVL(Double.valueOf(preorden[0]));
         if (inorden.length == 1) {
@@ -279,6 +318,9 @@ public class ArbolBinario {
         return x;
     }
 
+    /*
+    método general para construir un arbol con recorrido inorden y preorden
+     */
     public void construirArbolInordenYPreorden(String inorden, String preorden) {
         String[] in = removerComas(inorden);
         String[] pre = removerComas(preorden);
@@ -301,6 +343,9 @@ public class ArbolBinario {
         }
     }
 
+    /*
+    método recursivo para construir con inorden y posorden
+     */
     public NodoDobleAVL construirArbolPosInRecursion(String[] inorden, String[] posorden) {
         NodoDobleAVL x = new NodoDobleAVL(Double.valueOf(posorden[posorden.length - 1]));
         if (inorden.length == 1) {
@@ -324,6 +369,9 @@ public class ArbolBinario {
         return x;
     }
 
+    /*
+    método general para construir un arbol con recorrido inorden y posorden
+     */
     public void construirArbolInordenYPosorden(String inorden, String posorden) {
         String[] in = removerComas(inorden);
         String[] pos = removerComas(posorden);
@@ -346,6 +394,9 @@ public class ArbolBinario {
         }
     }
 
+    /*
+    método auxiliar para crear un sub vector recibiendo otro vector como parámetro
+     */
     public String[] subVector(String[] x, int n, int m) {
         String[] s = new String[m];
         for (int i = 0; i < m; i++) {
@@ -354,11 +405,17 @@ public class ArbolBinario {
         return s;
     }
 
+    /*
+    método auxiliar que convierte un string de nodos separados con comas a vector
+     */
     public String[] removerComas(String x) {
         String[] y = x.split(",");
         return y;
     }
 
+    /*
+    método auxiliar para retornar la ubicación en un vector de un string que entra como parámetro
+     */
     public int indice(String[] x, String y) {
         for (int i = 0; i < x.length; i++) {
             if (x[i].equals(y)) {
@@ -368,6 +425,9 @@ public class ArbolBinario {
         return -1;
     }
 
+    /*
+    método que busca en el arbol un nodo que tenga el valor ingresado
+     */
     public NodoDobleAVL buscarNodo(double d) {
         NodoDobleAVL p = raiz;
         if ((double) p.retornaDato() == d) return p;
@@ -380,6 +440,9 @@ public class ArbolBinario {
         return null;
     }
 
+    /*
+    método que busca el nodo padre de un valor ingresado
+     */
     public NodoDobleAVL padre(double d) {
         NodoDobleAVL p = raiz;
         if ((double) p.retornaDato() == d) return null;
@@ -396,6 +459,9 @@ public class ArbolBinario {
         return null;
     }
 
+    /*
+    método que retorna el número de hijos del nodo cuyo dato es ingresado
+     */
     public int numeroDeHijos(double d) {
         NodoDobleAVL p = buscarNodo(d);
         if (p.retornaLI() != null && p.retornaLD() != null) {
@@ -405,6 +471,9 @@ public class ArbolBinario {
         } else return 0;
     }
 
+    /*
+    método que retorna el nodo hermano del nodo cuyo dato es ingresado
+     */
     public NodoDobleAVL hermano(double d) {
         NodoDobleAVL x = buscarNodo(d);
         NodoDobleAVL p = padre((double) x.retornaDato());
@@ -414,6 +483,9 @@ public class ArbolBinario {
         else return p.retornaLD();
     }
 
+    /*
+    método que retorna el nodo abuelo de un nodo cuyo valor es ingresado
+     */
     public NodoDobleAVL abuelo(double d) {
         NodoDobleAVL x = buscarNodo(d);
         if (x == raiz || x == raiz.retornaLI() || x == raiz.retornaLD()) {
@@ -422,6 +494,10 @@ public class ArbolBinario {
         return (padre((double) padre((double) x.retornaDato()).retornaDato()));
     }
 
+    /*
+    método que retorna una cadena con los datos de los nodos ancestros del nodo
+    cuyo valor es ingresado
+     */
     public String ancestros(double d) {
         String s = "";
         NodoDobleAVL x = buscarNodo(d);
@@ -435,6 +511,9 @@ public class ArbolBinario {
         return s;
     }
 
+    /*
+    método que retorna el nodo tío del nodo cuyo valor es ingresado
+     */
     public NodoDobleAVL tio(double d) {
         NodoDobleAVL x = buscarNodo(d);
         if (x == raiz || x == raiz.retornaLI() || x == raiz.retornaLD()) {
@@ -443,17 +522,14 @@ public class ArbolBinario {
         return hermano((double) padre(d).retornaDato());
     }
 
+    /*
+    método que retorna en un string si el nodo cuyo valor es ingresado
+    es hijo izquierdo o hijo derecho, de ser la raíz lo indica
+     */
     public String esIzqODer(double d) {
         NodoDobleAVL p = padre(d);
         if (p == null) return "Es la Raiz";
         if (p.retornaLI() == buscarNodo(d)) return "Izquierdo";
         return "Derecho";
     }
-
-
-    //        __2__
-    //      1     __4__
-    //          3     __6__
-    //              5     __8
-    //                   7
 }

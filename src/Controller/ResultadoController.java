@@ -22,6 +22,7 @@ import java.util.*;
 
 public class ResultadoController {
 
+    //atributos y conección con la interfaz
 
     @FXML
     private AnchorPane rootPane;
@@ -41,9 +42,7 @@ public class ResultadoController {
     private Label preorden_label;
     @FXML
     private Label posorden_label;
-
-
-     @FXML
+    @FXML
     private TableColumn<Resultado, Integer> indice_columna;
     @FXML
     private TableColumn<Resultado, String> nodo_columna;
@@ -61,22 +60,31 @@ public class ResultadoController {
     private TableColumn<Resultado, String> tio_columna;
     @FXML
     private TableColumn<Resultado, String> abuelo_columna;
-
     public static ArbolBinario Arbol;
     public ObservableList<Resultado> lista = FXCollections.observableArrayList();
 
+    //métodos de la clase
+
+    /*
+    método que actualiza el árbol para tomar sus datos
+     */
     public static void setA(ArbolBinario a) {
         Arbol = a;
     }
 
+    /*
+    método que regresa a la ventana principal de interfaz de usuario
+     */
     public void cerrar_action() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
-
+    /*
+    método que toma y asigna los valores del arbol para mostrarlos
+     */
     public void cargar_action() {
-        //inicializar columnas
+        //inicializar columnas de la tabla
         indice_columna.setCellValueFactory(new PropertyValueFactory<>("indice"));
         nodo_columna.setCellValueFactory(new PropertyValueFactory<>("nodo"));
         hijos_columna.setCellValueFactory(new PropertyValueFactory<>("hijos"));
@@ -121,6 +129,7 @@ public class ResultadoController {
             lista.add(new Resultado(indice,nodo,hijos,hermano,lado,padre,ancestros,tio,abuelo));
         }
 
+        //actualizar valores generales del árbol
         altura_label.setText(altura_label.getText()+Arbol.altura());
         hojas_label.setText(hojas_label.getText()+Arbol.hojas());
         grado_label.setText(grado_label.getText()+Arbol.grado());
@@ -129,6 +138,7 @@ public class ResultadoController {
         posorden_label.setText(posorden_label.getText()+Arbol.mostrarS(2));
     }
 
+    //métodos que retornan como string los valores de tio, abuelo, hermano y padre para el nodo ingresado
     public String cargarTio(NodoDobleAVL p) {
         NodoDobleAVL x = Arbol.tio((double) p.retornaDato());
         String s;
@@ -158,6 +168,8 @@ public class ResultadoController {
         return s;
     }
 
+    //método que toma los recursos necesarios para lanzar la ventana que permite graficar el árbol y lanza
+    //la vista correspondiente en una ventana nueva
     public void graficar_action() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/grafico.fxml"));
         Parent root = loader.load();

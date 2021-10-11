@@ -10,13 +10,16 @@ import lista.NodoDobleAVL;
 
 public class Grafico {
 
+    //atributos y conección con la vista
     public static ArbolBinario a;
-
     @FXML
     private Pane panel_id;
     @FXML
     private Button btnID;
 
+    /*
+    método que responde a la acción del botón, grafica el primer nodo y busca en sus ligas cuales son != null
+     */
     public void mostrar_action() {
         NodoDobleAVL p = a.getRaiz();
         int x = 300;
@@ -34,6 +37,7 @@ public class Grafico {
         btnID.setVisible(false);
     }
 
+    //método que recibe un nodo y las coordenadas para graficarlo
     public void dibujarNodo(NodoDobleAVL p, int x, int y, int rx, int ry) {
         Label label = new Label();
         label.setText(p.retornaDato().toString());
@@ -53,6 +57,7 @@ public class Grafico {
         panel_id.getChildren().add(label);
     }
 
+    //método recursivo para graficar hijos izquierdos
     public void agregarLI(NodoDobleAVL p, int x, int y, int dx) {
         int rx = medio(p);
         p = p.retornaLI();
@@ -67,6 +72,7 @@ public class Grafico {
         }
     }
 
+    //método recursivo para graficar hijos derechos
     public void agregarLD(NodoDobleAVL p, int x, int y, int dx) {
         int rx = medio(p);
         p = p.retornaLD();
@@ -81,6 +87,7 @@ public class Grafico {
         }
     }
 
+    //método auxiliar que calcula el valor medio de un label
     public int medio(NodoDobleAVL p) {
         Label l = new Label();
         l.setText(p.retornaDato().toString());

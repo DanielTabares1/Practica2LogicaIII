@@ -1,3 +1,7 @@
+/*
+* Clase auxiliar, tipo de dato Resultado, permite una actualización más facil de
+*  la tabla con la información de cada nodo
+* */
 package Controller;
 
 public class Resultado {

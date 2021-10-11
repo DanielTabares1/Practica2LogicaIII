@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+    //este método se encarga de cargar los recursos necesarios para lanzar la vista principal
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View/sample.fxml"));
