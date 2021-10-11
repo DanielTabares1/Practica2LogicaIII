@@ -39,7 +39,6 @@ public class ArbolBinario {
          *
          */
         if (esVacio()) {
-            System.out.println("No existían más nodos.");
             raiz = n;
             return;
         }
@@ -53,7 +52,6 @@ public class ArbolBinario {
          */
         while (p != null) {
             if ((double) p.retornaDato() == d) {
-                System.out.println("Dato ya existe");
                 return;
             }
             q = p;
@@ -70,10 +68,8 @@ public class ArbolBinario {
          */
         if (d > (double) q.retornaDato()) {
             q.asignaLD(n);
-            System.out.println(n.retornaDato() + "Agregado a la derecha de " + q.retornaDato());
         } else {
             q.asignaLI(n);
-            System.out.println(n.retornaDato() + "Agregado a la izquierda de " + q.retornaDato());
         }
 
     }
